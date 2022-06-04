@@ -27,7 +27,7 @@ class Book(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
     image = relationship("Image", uselist=False, back_populates="book")
-    available = relationship("Stock", uselist=False, back_populates="book")
+    # available = relationship("Stock", uselist=False, back_populates="book")
     
 class Image(Base):
     __tablename__ = 'Image'
@@ -43,13 +43,13 @@ class Image(Base):
 
     book = relationship("Book", uselist=False, back_populates="image")
     
-class Stock(Base):
-    __tablename__ = 'Stock'
+# class Stock(Base):
+#     __tablename__ = 'Stock'
     
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    amount = Column(Integer, nullable=False, default=1)
-    available = Column(Integer, nullable=False, default=1)
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-    book_id = Column(Integer, ForeignKey('Book.id'))
+#     id = Column(Integer, primary_key=True, autoincrement=True)
+#     qty = Column(Integer, nullable=False, default=1)
+#     available = Column(Integer, nullable=False, default=1)
+#     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+#     book_id = Column(Integer, ForeignKey('Book.id'))
 
-    book = relationship("Book", uselist=False, back_populates="image")
+#     book = relationship("Book", uselist=False, back_populates="image")

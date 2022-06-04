@@ -31,9 +31,12 @@ class BookBase(BaseModel):
     preview_link: Optional[str]
     info_link: Optional[str]
 
-class BookCreate(BaseModel):
+class BookCreateRequest(BaseModel):
     detail: BookBase
     image: Image
+    
+class BookCreate(BaseModel):
+    pass
 
 class Book(BookBase):
     id: int
