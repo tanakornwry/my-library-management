@@ -11,10 +11,7 @@ You can see my database design here https://dbdiagram.io/d/6296476e54ce26352734c
     - `cd my-library-management`
     - `pip install -r requirements.txt`
 4. Look at the project root directory, change the file name `.env.example` to `.env`
-5. Modifies the value of `.env` on fields `SQLALCHEMY_DATABASE_URL` and `SQLALCHEMY_DATABASE_URL_TEST` to be your Postgresql's URL. Sample format has in the file.
-    - `<username>`
-    - `<password>`
-    - `<databasename>`
+5. Modifies the value of `.env` on fields `SQLALCHEMY_DATABASE_URL` and `SQLALCHEMY_DATABASE_URL_TEST` to be your Postgresql's URL. Sample format has in the file. (`<username>`,`<password>`,and `<databasename>`
 6. Modifies `alembic.ini` on field `sqlalchemy.url` to your Postgresql's URL (same at the `SQLALCHEMY_DATABASE_URL`)
 7. Create the database schemas by running this command 
     1. `alembic revision --autogenerate -m "Init"`
