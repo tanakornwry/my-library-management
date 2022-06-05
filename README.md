@@ -1,10 +1,10 @@
 # Library management system
 
-## Database design structure
-You can see my database design here https://dbdiagram.io/d/6296476e54ce26352734c52b
-
 ## Live server
 You can access the application on Heroku live server here https://my-library-management.herokuapp.com/docs
+
+## Database design structure
+You can see my database design here https://dbdiagram.io/d/6296476e54ce26352734c52b
 
 ## How to install and set up the application
 1. Prepare your Postgresql and create 2 new databases, one for Live database and one for test database.
