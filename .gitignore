@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.alembic/versions/*
+alembic/versions/*
+alembic/__pycache__
