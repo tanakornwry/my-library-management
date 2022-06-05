@@ -7,11 +7,11 @@ class Book:
         self.db = db
     
     def getBook(self, **kwargs):
-        if kwargs["book_id"] is not None:
+        if "book_id" in kwargs:
             return crud.get_book(db=self.db, book_id=kwargs["book_id"])
         
-        if kwargs["book_code"] is not None:
-            return crud.get_book_by_code(db=self.db, book_id=kwargs["book_code"])
+        if "book_code" in kwargs:
+            return crud.get_book_by_code(db=self.db, book_code=kwargs["book_code"])
         
     def getBooks(self, **kwargs):
         books = crud.get_books(db=self.db)
@@ -51,6 +51,6 @@ class Book:
         if returned is not None:
             stock = crud.get_book_stock(db=self.db, book_id=returned.book_id)
             crud.update_stock_available(db=self.db, book_id=returned.book_id, available=stock.available+1)
-            return returned
-        else:
-            return None
+
+        return returned
+        

@@ -1,30 +1,32 @@
+from importlib.resources import path
+from fastapi import Query
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Required
 
 # Base schemas
 class BookBase(BaseModel):
     code: str
-    etag: str = None
-    isbn: str = None
+    etag: str | None = None
+    isbn: str | None = None
     name: str
-    description: Optional[str]
-    published_date: Optional[datetime]
-    type: Optional[str]
-    rating_count: Optional[int]
-    everage_count: Optional[int]
-    content_version: Optional[str]
-    language: Optional[str]
-    preview_link: Optional[str]
-    info_link: Optional[str]
+    description: str | None = None
+    published_date: datetime | None = None
+    type: str | None = None
+    rating_count: int | None = None
+    everage_count: int | None = None
+    content_version: str | None = None
+    language: Optional[str] = "TH" 
+    preview_link: str | None = None
+    info_link: str | None = None
     
 class ImageBase(BaseModel):
-    small_thumbnail: str
-    thumbnail: str
-    small: str
-    medium: str
-    large: str
-    extra_large: str
+    small_thumbnail: str | None = None
+    thumbnail: str | None = None
+    small: str | None = None
+    medium: str | None = None
+    large: str | None = None
+    extra_large: str | None = None
     
 class StockBase(BaseModel):
     qty: int
@@ -80,7 +82,7 @@ class BorrowResponse(BorrowBase):
 
 class Book(BookBase):
     id: int
-    image: Image
+    image: Image | None = None
     stock: Stock | None = None
     borrow_log: list[Borrow] = []
     
