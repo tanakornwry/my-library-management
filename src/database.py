@@ -9,7 +9,7 @@ try:
 except:
     print("Can not read .env file")
 
-SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://username:password@localhost/library')
+SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL

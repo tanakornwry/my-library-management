@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -6,7 +8,12 @@ from src.database import Base
 from src.main import app, get_db
 from tests.testconf import get_sample_input, get_not_existed_book_id
 
-SQLALCHEMY_DATABASE_URL = "postgresql://tanakornwry:1234@localhost/library_test"
+try:
+    load_dotenv()    
+except:
+    print("Can not read .env file")
+
+SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL_TEST')
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
