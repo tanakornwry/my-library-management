@@ -12,6 +12,7 @@ class Book(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     code = Column(String(20), nullable=False)
+    isbn = Column(String(20))
     etag = Column(String(20))
     name = Column(String(255), nullable=False)
     description = Column(Text)
@@ -27,7 +28,8 @@ class Book(Base):
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
     image = relationship("Image", uselist=False, back_populates="book")
-    # available = relationship("Stock", uselist=False, back_populates="book")
+    stock = relationship("Stock", uselist=False, back_populates="book")
+    borrow_log = relationship("Borrow_log", back_populates="book")
     
 class Image(Base):
     __tablename__ = 'Image'
@@ -43,13 +45,23 @@ class Image(Base):
 
     book = relationship("Book", uselist=False, back_populates="image")
     
-# class Stock(Base):
-#     __tablename__ = 'Stock'
+class Stock(Base):
+    __tablename__ = "Stock"
     
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     qty = Column(Integer, nullable=False, default=1)
-#     available = Column(Integer, nullable=False, default=1)
-#     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-#     book_id = Column(Integer, ForeignKey('Book.id'))
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    qty = Column(Integer, nullable=False, default=1)
+    available = Column(Integer, nullable=False, default=1)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    book_id = Column(Integer, ForeignKey('Book.id'))
 
-#     book = relationship("Book", uselist=False, back_populates="image")
+    book = relationship("Book", uselist=False, back_populates="stock")
+    
+class Borrow_log(Base):
+    __tablename__ = 'Borrow_log'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    customer_name = Column(String(255), nullable=False)
+    created_at = Column(DateTime)
+    returned_at = Column(DateTime)
+    book_id = Column(Integer, ForeignKey('Book.id'))
+    
+    book = relationship("Book", uselist=False, back_populates="borrow_log")
